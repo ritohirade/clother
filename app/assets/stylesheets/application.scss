@@ -1,1 +1,11 @@
 @import "bootstrap";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.top-background-image {
+  height: 790px;
+  width: 1440px;
+  background-image: url(clother-top2.jpg);
+  background-size: cover;
+}
