@@ -3,9 +3,31 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+@import "top";
+
 .top-background-image {
   height: 790px;
   width: 1440px;
-  background-image: url(clother-top2.jpg);
+  background-image: url(people2.png);
   background-size: cover;
+}
+
+.top-login-button {
+  display: block;
+  width: 310px;
+  height: 65px;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 30px;
+  background: #426bff;
+  color: #fff;
+}
+
+.btn {
+  color: #fff;
+}
+
+.clother-logo1 {
+  margin-top: -100px;
+  margin-left: 50px;
 }
