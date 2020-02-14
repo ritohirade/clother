@@ -3,7 +3,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+@import "common";
+
 @import "top";
+@import "users/sign_up";
 
 .top-background-image {
   height: 790px;
