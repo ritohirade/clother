@@ -9,6 +9,14 @@
 @import "users/sign_up";
 @import "users/sign_in";
 
+.header-class {
+  width: 1440px;
+  height: 120px;
+  margin: 0 auto;
+  background-color: white;
+  display: inline-block !important;
+}
+
 .top-background-image {
   height: 790px;
   width: 1440px;
@@ -34,4 +42,19 @@
 .clother-logo1 {
   margin-top: -100px;
   margin-left: 50px;
+  display: inline-block;
+}
+
+.search-key {
+  margin: 0 auto;
+  width: 700px;
+  height: 50px;
+  display: block;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.ul {
+  list-style: none;
+  display: inline-block !important;
 }

@@ -7,6 +7,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -19,5 +21,18 @@
         <div class="alert alert-danger"><%= flash[:alert] %></div>
      <% end %>
      <%= yield %>
+
+     <% if user_signed_in? %>
+        <header>
+         <div class="header-class">
+          <img src="clother-logo.png">
+          <input type="text" placeholder="キーワードを検索する" class="search-key">
+          <ul>
+            <i class="fas fa-home"></i>
+            <i class="fas fa-user"></i>
+          </ul>
+         </div>
+        </header>
+     <% end %>
   </body>
 </html>
