@@ -1,0 +1,23 @@
+.header {
+  height: 80px;
+  weight: 1440px;
+  background-color: #426bff;
+}
+
+.form-control {
+  width: 1060px;
+}
+
+.submitBtn {
+  background: #426bff;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  margin-left: 800px;
+  margin: 0 auto;
+  border-radius: 90px;
+  transition: opacity 0.5s;
+  &:hover {
+    opacity: 0.6;
+  }
+}

@@ -24,14 +24,18 @@
 }
 
 .submitBtn {
-  background: #426bff;
-  color: white;
+  padding: 12px;
   width: 200px;
-  padding: 10px;
-  margin-left: 600px;
-  border-radius: 90px;
+  border-radius: 21px;
+  background: #fd5068;
+  color: #fff;
+  text-align: center;
+  border: none;
+  margin-top: 20px;
+  opacity: 1;
   transition: opacity 0.5s;
+  cursor: pointer;
   &:hover {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 }
