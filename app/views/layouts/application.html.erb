@@ -20,19 +20,21 @@
      <% if flash[:alert] %>
         <div class="alert alert-danger"><%= flash[:alert] %></div>
      <% end %>
-     <%= yield %>
 
      <% if user_signed_in? %>
         <header>
-         <div class="header-class">
-          <img src="clother-logo.png">
+          <%= image_tag('clother-logo-fixed.png', class: "img-circle pull-left corpolate-logo", style: "height: 20px; width: 105.2px;") %>
           <input type="text" placeholder="キーワードを検索する" class="search-key">
-          <ul>
-            <i class="fas fa-home"></i>
-            <i class="fas fa-user"></i>
+          <ul　class="header-menu">
+            <%= link_to products_path do %>
+               <i class="fas fa-home"></i>
+            <% end %>
+            <%= link_to user_path(current_user) do %>
+               <i class="fas fa-user"></i>
+            <% end %>
           </ul>
-         </div>
         </header>
      <% end %>
+     <%= yield %>
   </body>
 </html>
