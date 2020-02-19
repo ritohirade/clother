@@ -14,23 +14,25 @@
             <% end %>
         </div>
         <div class="profile">
-            <%= link_to info_user_path(current_user), class: "to-detail-prof-button" do %>
+            <%= link_to info_user_path(current_user), class: "to-detail-prof-button", style: "border-top: solid 2px #000000;" do %>
                 <i class="fas fa-edit">プロフィール</i>
             <% end %>
         </div>
     </div>
     <div class="prof-container">
-        <div class="prof-comment">
-            <div class="text">ひとこと</div>
-            <div class="userInfo_introduction"><%= @user.self_introduction %></div>
-        </div>
+        <% if @user.self_introduction != nil %>
+            <div class="prof-comment">
+                <div class="text">ひとこと</div>
+                <div class="userInfo_introduction"><%= @user.self_introduction %></div>
+            </div>
+        <% end %>
         <div class='userAction'>
             <div class="userAction_edit userAction_common">
-                <%= link_to "プロフィールを編集", edit_user_path %>
+                <%= link_to "プロフィールを編集", edit_user_path, class: "prof" %>
             </div>
             <div class='userAction_logout userAction_common'>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "out" %>
             </div>
-      </div>
+        </div>
     </div>
 </div>
