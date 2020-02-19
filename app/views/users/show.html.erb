@@ -1,7 +1,7 @@
 <div class="container">
     <div class="top-prof">
         <div class="top-user-image">
-            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpeg', class: "prof-image", fallback: "no-image.png" %>
         </div>
         <div class="top-user-name">
             <%= @user.name %>

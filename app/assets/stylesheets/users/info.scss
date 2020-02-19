@@ -9,3 +9,44 @@
   margin-left: 30px;
   border-top: solid 2px #000000;
 }
+.prof-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.prof-container {
+}
+.text {
+  margin-top: 50px;
+  font-size: 24px;
+}
+.userInfo_introduction {
+  margin-top: 10px;
+  border: solid 1px #afafaf;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.userAction {
+  margin-top: 40px;
+}
+.userAction_common {
+  color: white;
+  width: 210px;
+  padding: 10px;
+  margin-left: 800px;
+  margin: 0 auto;
+  border-radius: 90px;
+  transition: opacity 0.5s;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+.userAction_edit {
+  background: #426bff;
+}
+.userAction_logout {
+  background-color: #ff8686;
+}

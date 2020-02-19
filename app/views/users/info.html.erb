@@ -1,7 +1,7 @@
 <div class="container">
     <div class="top-prof">
         <div class="top-user-image">
-            <%= image_tag('woman.jpg', class: "img-circle pull-left profile-img", style: "width: 200px; height: 200px;") %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpeg', class: "prof-image", fallback: "no-image.png" %>
         </div>
         <div class="top-user-name">
             <%= @user.name %>
@@ -26,12 +26,10 @@
         </div>
         <div class='userAction'>
             <div class="userAction_edit userAction_common">
-                <%= link_to(content_tag(:i, "", class: 'fas fa-edit fa-2x'), edit_user_path) %>
-                <span>情報を編集</span>
+                <%= link_to "プロフィールを編集", edit_user_path %>
             </div>
             <div class='userAction_logout userAction_common'>
-                <%= link_to(content_tag(:i, "", class: 'fas fa-cog fa-2x'), destroy_user_session_path, method: :delete) %>
-                <span>ログアウト</span>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
             </div>
       </div>
     </div>
