@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_16_103011) do
+ActiveRecord::Schema.define(version: 2020_02_18_180031) do
 
   create_table "products", force: :cascade do |t|
     t.string "brand_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_02_16_103011) do
     t.string "self_introduction", limit: 500
     t.integer "sex", default: 0, null: false
     t.string "img_name"
+    t.string "profile_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

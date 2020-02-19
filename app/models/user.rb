@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  attachment :profile_image
   mount_uploader :img_name, ImgNameUploader
 end

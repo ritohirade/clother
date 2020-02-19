@@ -1,7 +1,26 @@
 .top-prof {
   text-align: center;
   border-bottom: solid 0.3px #dadada;
+  padding-bottom: 20px;
 }
 .container {
   width: 874px;
+}
+.top-user-image {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.prof-detail {
+  text-align: center;
+}
+.favorite-pin {
+  margin-top: 20px;
+  display: inline-block;
+  margin-right: 30px;
+  border-top: solid 2px #000000;
+}
+.profile {
+  margin-top: 20px;
+  display: inline-block;
+  margin-left: 30px;
 }

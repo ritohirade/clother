@@ -1,7 +1,7 @@
 <div class="container">
     <div class="top-prof">
         <div class="top-user-image">
-            <%= image_tag('woman.jpg', class: "img-circle pull-left profile-img", style: "width: 100px; height: 100px;") %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
         </div>
         <div class="top-user-name">
             <%= @user.name %>
@@ -9,10 +9,14 @@
     </div>
     <div class="prof-detail">
         <div class="favorite-pin">
-
+            <%= link_to user_path(current_user), class: "to-favorite-pin-button" do %>
+                <i class="fas fa-heart">お気に入り</i>
+            <% end %>
         </div>
         <div class="profile">
-            
+            <%= link_to info_user_path(current_user), class: "to-detail-prof-button" do %>
+                <i class="fas fa-edit">プロフィール</i>
+            <% end %>
         </div>
     </div>
 </div>

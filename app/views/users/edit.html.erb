@@ -1,0 +1,18 @@
+<div class="edit-view">
+    <div class="first-text">
+        プロフィールを編集
+    </div>
+    <div class="form-body">
+        <% form_for(@user) do |f| %>
+            <div class="form-group">
+                <label>名前</label>
+                    <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName", placeholder:"名前を入力してください" %>
+                <label>ひとこと</label>
+                    <%= f.text_area :self_introduction, class:"form-control", placeholder:"例) ストリート系のファッションが好きなので、その系統のブランドをチェックしています。"%>
+                <label>Image</label>
+                    <%= f.attachment_field :profile_image %>
+            </div>                      
+            <%= f.submit "変更を保存", class:"btn" %>
+        <% end %>
+    </div>
+</div>

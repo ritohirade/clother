@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="top-prof">
+        <div class="top-user-image">
+            <%= image_tag('woman.jpg', class: "img-circle pull-left profile-img", style: "width: 200px; height: 200px;") %>
+        </div>
+        <div class="top-user-name">
+            <%= @user.name %>
+        </div>
+    </div>
+    <div class="prof-detail">
+        <div class="favorite-pin">
+            <%= link_to user_path(current_user), class: "to-favorite-pin-button" do %>
+                <i class="fas fa-heart">お気に入り</i>
+            <% end %>
+        </div>
+        <div class="profile">
+            <%= link_to info_user_path(current_user), class: "to-detail-prof-button" do %>
+                <i class="fas fa-edit">プロフィール</i>
+            <% end %>
+        </div>
+    </div>
+    <div class="prof-container">
+        <div class="prof-comment">
+            <div class="text">ひとこと</div>
+            <div class="userInfo_introduction"><%= @user.self_introduction %></div>
+        </div>
+        <div class='userAction'>
+            <div class="userAction_edit userAction_common">
+                <%= link_to(content_tag(:i, "", class: 'fas fa-edit fa-2x'), edit_user_path) %>
+                <span>情報を編集</span>
+            </div>
+            <div class='userAction_logout userAction_common'>
+                <%= link_to(content_tag(:i, "", class: 'fas fa-cog fa-2x'), destroy_user_session_path, method: :delete) %>
+                <span>ログアウト</span>
+            </div>
+      </div>
+    </div>
+</div>
