@@ -16,18 +16,18 @@ Product.create!(
 Product.create!(
     brand_id: '2',
     product_name: 'フリルハイネックトップス',
-    product_image: open("#{Rails.root}/db/dummy_img/1.jpeg"),
+    product_image: open("#{Rails.root}/db/dummy_img/2.jpeg"),
     price: 3500
 )
 Product.create!(
     brand_id: '3',
     product_name: 'ビックボーダーセーター',
-    product_image: open("#{Rails.root}/db/dummy_img/1.jpeg"),
+    product_image: open("#{Rails.root}/db/dummy_img/3.jpeg"),
     price: 4100,
 )
 Product.create!(
     brand_id: '4',
-    product_name: 'ニットワンピース＋チェックシャツセット',
-    product_image: open("#{Rails.root}/db/dummy_img/1.jpeg"),
+    product_name: 'ツイードルーズカーデ',
+    product_image: open("#{Rails.root}/db/dummy_img/4.jpeg"),
     price: 5230,
 )

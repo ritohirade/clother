@@ -17,9 +17,6 @@
  *
  */
 (function($, window, document, Math, undefined) {
-  /*
-   * Feature tests and global variables
-   */
   var div = document.createElement("div"),
     divStyle = div.style,
     suffix = "Transform",
@@ -45,7 +42,6 @@
     _skew = "skew",
     _matrix = "matrix";
 
-  // test different vendor prefixes of these properties
   while (i--) {
     if (testProperties[i] in divStyle) {
       $.support[_transform] = supportProperty = testProperties[i];
@@ -53,35 +49,26 @@
       continue;
     }
   }
-  // IE678 alternative
   if (!supportProperty) {
     $.support.matrixFilter = supportMatrixFilter = divStyle.filter === "";
   }
 
-  // px isn't the default unit of these properties
   $.cssNumber[_transform] = $.cssNumber[_transformOrigin] = true;
 
-  /*
-   * fn.css() hooks
-   */
   if (supportProperty && supportProperty != _transform) {
-    // Modern browsers can use jQuery.cssProps as a basic hook
     $.cssProps[_transform] = supportProperty;
     $.cssProps[_transformOrigin] = supportProperty + "Origin";
 
-    // Firefox needs a complete hook because it stuffs matrix with "px"
     if (supportProperty == "Moz" + suffix) {
       propertyHook = {
         get: function(elem, computed) {
           return computed
-            ? // remove "px" from the computed matrix
-              $.css(elem, supportProperty)
+            ? $.css(elem, supportProperty)
                 .split("px")
                 .join("")
             : elem.style[supportProperty];
         },
         set: function(elem, value) {
-          // add "px" to matrices
           elem.style[supportProperty] = /matrix\([^)p]*\)/.test(value)
             ? value.replace(
                 /matrix((?:[^,]*,){4})([^,]*),([^)]*)/,
@@ -90,10 +77,6 @@
             : value;
         }
       };
-      /* Fix two jQuery bugs still present in 1.5.1
-       * - rupper is incompatible with IE9, see http://jqbug.com/8346
-       * - jQuery.css is not really jQuery.cssProps aware, see http://jqbug.com/8402
-       */
     } else if (/^1\.[0-5](?:\.|$)/.test($.fn.jquery)) {
       propertyHook = {
         get: function(elem, computed) {
@@ -103,15 +86,6 @@
         }
       };
     }
-    /* TODO: leverage hardware acceleration of 3d transform in Webkit only
-        else if ( supportProperty == "Webkit" + suffix && support3dTransform ) {
-            propertyHook = {
-                set: function( elem, value ) {
-                    elem.style[supportProperty] =
-                        value.replace();
-                }
-            }
-        }*/
   } else if (supportMatrixFilter) {
     propertyHook = {
       get: function(elem, computed, asArray) {
@@ -156,7 +130,6 @@
 
         value = matrix(value);
 
-        // rotate, scale and skew
         Matrix = [
           "Matrix(" + "M11=" + value[0],
           "M12=" + value[2],
@@ -174,16 +147,12 @@
           : filter + " progid:DXImageTransform.Microsoft." + Matrix + ")";
 
         if (!$.cssHooks[_transformOrigin]) {
-          // center the transform origin, from pbakaus's Transformie http://github.com/pbakaus/transformie
           if ((centerOrigin = $.transform.centerOrigin)) {
             elemStyle[centerOrigin == "margin" ? "marginLeft" : "left"] =
               -(elem.offsetWidth / 2) + elem.clientWidth / 2 + "px";
             elemStyle[centerOrigin == "margin" ? "marginTop" : "top"] =
               -(elem.offsetHeight / 2) + elem.clientHeight / 2 + "px";
           }
-
-          // translate
-          // We assume that the elements are absolute positionned inside a relative positionned wrapper
           elemStyle.left = value[4] + "px";
           elemStyle.top = value[5] + "px";
         } else {
@@ -192,16 +161,11 @@
       }
     };
   }
-  // populate jQuery.cssHooks with the appropriate hook if necessary
   if (propertyHook) {
     $.cssHooks[_transform] = propertyHook;
   }
-  // we need a unique setter for the animation logic
   propertyGet = (propertyHook && propertyHook.get) || $.css;
 
-  /*
-   * fn.animate() hooks
-   */
   $.fx.step.transform = function(fx) {
     var elem = fx.elem,
       start = fx.start,
@@ -214,22 +178,17 @@
       endVal,
       unit;
 
-    // fx.end and fx.start need to be converted to interpolation lists
     if (!start || typeof start === "string") {
-      // the following block can be commented out with jQuery 1.5.1+, see #7912
       if (!start) {
         start = propertyGet(elem, supportProperty);
       }
 
-      // force layout only once per animation
       if (supportMatrixFilter) {
         elem.style.zoom = 1;
       }
 
-      // replace "+=" in relative animations (-= is meaningless with transforms)
       end = end.split("+=").join(start);
 
-      // parse both transform to generate interpolation list of same length
       $.extend(fx, interpolationList(start, end));
       start = fx.start;
       end = fx.end;
@@ -237,7 +196,6 @@
 
     i = start.length;
 
-    // interpolate functions of the list one by one
     while (i--) {
       startVal = start[i];
       endVal = end[i];
@@ -292,16 +250,10 @@
       : (elem.style[supportProperty] = transform);
   };
 
-  /*
-   * Utility functions
-   */
-
-  // turns a transform string into its "matrix(A,B,C,D,X,Y)" form (as an array, though)
   function matrix(transform) {
     transform = transform.split(")");
     var trim = $.trim,
       i = -1,
-      // last element of the array is an empty string, get rid of it
       l = transform.length - 1,
       split,
       prop,
@@ -312,7 +264,6 @@
     prev[0] = prev[3] = rslt[0] = rslt[3] = 1;
     prev[1] = prev[2] = prev[4] = prev[5] = 0;
 
-    // Loop through the transform properties, parse and multiply them
     while (++i < l) {
       split = transform[i].split("(");
       prop = trim(split[0]);
@@ -376,7 +327,6 @@
           break;
       }
 
-      // Matrix product (array in column-major order)
       rslt[0] = prev[0] * curr[0] + prev[2] * curr[1];
       rslt[1] = prev[1] * curr[0] + prev[3] * curr[1];
       rslt[2] = prev[0] * curr[2] + prev[2] * curr[3];
@@ -389,8 +339,6 @@
     return rslt;
   }
 
-  // turns a matrix into its rotate, scale and skew components
-  // algorithm from http://hg.mozilla.org/mozilla-central/file/7cb3e9795d04/layout/style/nsStyleAnimation.cpp
   function unmatrix(matrix) {
     var scaleX,
       scaleY,
@@ -399,37 +347,30 @@
       B = matrix[1],
       C = matrix[2],
       D = matrix[3];
-    // Make sure matrix is not singular
     if (A * D - B * C) {
-      // step (3)
       scaleX = Math.sqrt(A * A + B * B);
       A /= scaleX;
       B /= scaleX;
-      // step (4)
+
       skew = A * C + B * D;
       C -= A * skew;
       D -= B * skew;
-      // step (5)
+
       scaleY = Math.sqrt(C * C + D * D);
       C /= scaleY;
       D /= scaleY;
       skew /= scaleY;
-      // step (6)
+
       if (A * D < B * C) {
         A = -A;
         B = -B;
         skew = -skew;
         scaleX = -scaleX;
       }
-
-      // matrix is singular and cannot be interpolated
     } else {
-      // In this case the elem shouldn't be rendered, hence scale == 0
       scaleX = scaleY = skew = 0;
     }
 
-    // The recomposition order is very important
-    // see http://hg.mozilla.org/mozilla-central/file/7cb3e9795d04/layout/style/nsStyleAnimation.cpp#l971
     return [
       [_translate, [+matrix[4], +matrix[5]]],
       [_rotate, Math.atan2(B, A)],
@@ -438,8 +379,6 @@
     ];
   }
 
-  // build the list of transform functions to interpolate
-  // use the algorithm described at http://dev.w3.org/csswg/css3-2d-transforms/#animation
   function interpolationList(start, end) {
     var list = {
         start: [],
@@ -451,12 +390,9 @@
       currEnd,
       currType;
 
-    // get rid of affine transform matrix
     (start == "none" || isAffine(start)) && (start = "");
     (end == "none" || isAffine(end)) && (end = "");
 
-    // if end starts with the current computed style, this is a relative animation
-    // store computed style as the origin, remove it from start and end
     if (
       start &&
       end &&
@@ -472,8 +408,6 @@
       return;
     }
 
-    // start or end are affine, or list of transform functions are identical
-    // => functions will be interpolated individually
     if (!start || !end || functionList(start) == functionList(end)) {
       start && (start = start.split(")")) && (l = start.length);
       end && (end = end.split(")")) && (l = end.length);
@@ -489,8 +423,6 @@
         );
         append(list.end, parseFunction(currType, currEnd ? currEnd[1] : 0));
       }
-
-      // otherwise, functions will be composed to a single matrix
     } else {
       list.start = unmatrix(matrix(start));
       list.end = unmatrix(matrix(end));
@@ -500,10 +432,8 @@
   }
 
   function parseFunction(type, value) {
-    var // default value is 1 for scale, 0 otherwise
-      defaultValue = +!type.indexOf(_scale),
+    var defaultValue = +!type.indexOf(_scale),
       scaleX,
-      // remove X/Y from scaleX/Y & translateX/Y, not from skew
       cat = type.replace(/e[XY]/, "e");
 
     switch (type) {
@@ -559,7 +489,6 @@
     }
   }
 
-  // converts an angle string in any unit to a radian Float
   function toRadian(value) {
     return ~value.indexOf("deg")
       ? parseInt(value, 10) * ((Math.PI * 2) / 360)
@@ -568,9 +497,7 @@
       : parseFloat(value);
   }
 
-  // Converts "matrix(A,B,C,D,X,Y)" to [A,B,C,D,X,Y]
   function toArray(matrix) {
-    // remove the unit of X and Y for Firefox
     matrix = /([^,]*),([^,]*),([^,]*),([^,]*),([^,p]*)(?:px)?,([^)p]*)(?:px)?/.exec(
       matrix
     );
