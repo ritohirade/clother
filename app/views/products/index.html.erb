@@ -3,8 +3,10 @@
     <ul>
       <% @products.each do |product| %>
         <li data-user_id="<%= product.id %>">
+          
           <div class="userName"><%= product.product_name %></div>
           <%= image_tag product.product_image.url(:thumb) %>
+          
           <div class="like"></div>
           <div class="dislike"></div>
         </li>
