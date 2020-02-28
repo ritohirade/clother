@@ -34,12 +34,14 @@ ActiveRecord::Schema.define(version: 2020_02_20_091844) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "self_introduction", limit: 500
-    t.integer "sex", default: 0, null: false
+    t.string "string", limit: 500
+    t.string "sex", default: "0", null: false
+    t.string "integer", default: "0", null: false
     t.string "img_name"
     t.string "profile_image_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
