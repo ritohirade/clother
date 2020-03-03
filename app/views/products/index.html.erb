@@ -1,8 +1,9 @@
 <div class="topPage">
-  <div id="tinderslide">
-    <ul>
+  <div id="container1">
+    <ul class="buddy">
+      <% binding.pry %>
       <% @products.each do |product| %>
-        <li data-user_id="<%= product.id %>">
+        <li class="avatar">
           <div class="userName"><%= product.product_name %></div>
           <%= image_tag product.product_image.url(:thumb) %>
           <div class="like"></div>
@@ -12,15 +13,34 @@
     </ul>
     <div class="noUser">これで全てです。</div>
   </div>
-  <div class="actions" id="actionBtnArea">
-      <a href="#" class="dislike"><i class="fas fa-times fa-2x"></i></a>
-      <a href="#" class="like"><i class="fas fa-heart fa-2x"></i></a>
-  </div>
-</div>
-<script>
-  $("#tinderslide").jTinder();
-  $('.actions .like, .actions .dislike').click(function(e){
-  	e.preventDefault();
-  	$("#tinderslide").jTinder($(this).attr('class'));
+  <script>
+  $(document).ready(function(){
+
+    $(".buddy").on("swiperight",function(){
+      $(this).addClass('rotate-left').delay(700).fadeOut(1);
+      $('.buddy').find('.status').remove();
+
+      $(this).append('<div class="status like">Like!</div>');      
+      if ( $(this).is(':last-child') ) {
+        $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(300);
+       } else {
+          $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+       }
+    });  
+
+   $(".buddy").on("swipeleft",function(){
+    $(this).addClass('rotate-right').delay(700).fadeOut(1);
+    $('.buddy').find('.status').remove();
+    $(this).append('<div class="status dislike">Dislike!</div>');
+
+    if ( $(this).is(':last-child') ) {
+     $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(300);
+      alert('OUPS');
+     } else {
+        $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+    } 
   });
-</script>
+
+});
+  </script>
+</div>
