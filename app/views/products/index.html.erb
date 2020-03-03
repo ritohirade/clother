@@ -1,16 +1,15 @@
 <div class="topPage">
   <div id="container1">
-    <ul class="buddy">
-      <% binding.pry %>
+    <div class="buddy">
       <% @products.each do |product| %>
-        <li class="avatar">
+        <div data-user_id="<%= product.id %>" class="avatar">
           <div class="userName"><%= product.product_name %></div>
           <%= image_tag product.product_image.url(:thumb) %>
           <div class="like"></div>
           <div class="dislike"></div>
-        </li>
+        </div>
       <% end %>
-    </ul>
+    </div>
     <div class="noUser">これで全てです。</div>
   </div>
   <script>
@@ -26,7 +25,7 @@
        } else {
           $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
        }
-    });  
+    });
 
    $(".buddy").on("swipeleft",function(){
     $(this).addClass('rotate-right').delay(700).fadeOut(1);
