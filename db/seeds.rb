@@ -10,24 +10,24 @@ p "Create Products"
 Product.create!(
     brand_id: '1',
     product_name: 'ニットワンピース＋チェックシャツセット',
-    product_image: open("#{Rails.root}/db/dummy_img/1.jpeg"),
+    product_image: open("#{Rails.root}/db/dummy_img/5.jpeg"),
     price: 5230,
 )
 Product.create!(
     brand_id: '2',
     product_name: 'フリルハイネックトップス',
-    product_image: open("#{Rails.root}/db/dummy_img/2.jpeg"),
+    product_image: open("#{Rails.root}/db/dummy_img/6.jpeg"),
     price: 3500
 )
 Product.create!(
     brand_id: '3',
     product_name: 'ビックボーダーセーター',
-    product_image: open("#{Rails.root}/db/dummy_img/3.jpeg"),
+    product_image: open("#{Rails.root}/db/dummy_img/7.jpeg"),
     price: 4100,
 )
 Product.create!(
     brand_id: '4',
     product_name: 'ツイードルーズカーデ',
-    product_image: open("#{Rails.root}/db/dummy_img/4.jpeg"),
+    product_image: open("#{Rails.root}/db/dummy_img/8.jpeg"),
     price: 5230,
 )

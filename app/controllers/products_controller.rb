@@ -1,13 +1,12 @@
 class ProductsController < ApplicationController
-    def index
-        
+    def index  
         @products = Product.all
     end
     def show
     end
 
     private 
-    def user_params
+    def product_params
         params.require(:product).permit(:brand_id, :product_name, :product_image, :price)
     end
 end
