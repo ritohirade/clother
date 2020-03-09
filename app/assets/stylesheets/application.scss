@@ -42,8 +42,8 @@ header {
 }
 
 .search-key {
-  margin: 0 auto;
-  width: 700px;
+  margin: 0 auto !important;
+  width: 700px !important;
   height: 50px;
   display: block;
   border-radius: 10px;
@@ -56,4 +56,9 @@ header {
 
 .corpolate-logo {
   margin-right: 30px;
+}
+
+.fa-large {
+  font-size: 20px;
+  margin-left: 30px;
 }

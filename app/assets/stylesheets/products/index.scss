@@ -18,9 +18,9 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   color: #fff;
-  //   padding: 20px;
-  width: 550px;
-  height: 550px;
+  padding: 20px;
+  width: 400px !important;
+  height: 400px !important;
   top: 50px;
   left: 50px;
   position: absolute;
@@ -44,12 +44,11 @@
 }
 .avatar {
   background: #222;
-  width: 540px;
-  height: 540px;
+  width: 340px !important;
+  height: 340px !important;
   display: block;
-  margin: 5px;
-  //   margin-top: 10px;
-  //   margin-left: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
   background-size: auto 160% !important;
   background-position: center;
   background-repeat: no-repeat;
