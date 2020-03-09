@@ -14,7 +14,7 @@ class ProductImageUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process resize_to_fit: [600, 600]
+    process resize_to_fit: [340, 340]
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

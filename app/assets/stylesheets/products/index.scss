@@ -43,7 +43,7 @@
   z-index: 10;
 }
 .avatar {
-  background: #222;
+  background: #ffffff;
   width: 340px !important;
   height: 340px !important;
   display: block;
@@ -76,4 +76,8 @@
   top: 50px;
   left: 40px;
   text-shadow: none;
+}
+.userName {
+  color: #000000;
+  padding-top: 0px;
 }
