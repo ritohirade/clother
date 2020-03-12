@@ -11,8 +11,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <%= javascript_pack_tag 'application' %>
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <%= javascript_pack_tag 'hello_vue' %>
   </head> 
   <body>
      <% if user_signed_in? %>
@@ -29,6 +29,10 @@
                <i class="fas fa-user fa-large"></i>
             <% end %>
           </ul>
+          <div data-vue="a">
+            <p>{{ message }}</p>
+            <hello></hello>
+          </div>
         </header>
      <% end %>
      <% if flash[:notice] %>

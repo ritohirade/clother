@@ -31,8 +31,11 @@ require("channels");
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-console.log("Hello World from Webpacker");
 import Vue from "vue";
+import store from "./store";
+import cloneDeep from "lodash.clonedeep";
+
+const storeState = cloneDeep(store.state);
 
 var vms = [];
 
@@ -50,7 +53,7 @@ requireContext.keys().forEach(key => {
 document.addEventListener("turbolinks:load", () => {
   let templates = document.querySelectorAll("[data-vue]");
   for (let el of templates) {
-    let vm = new Vue(Object.assign(options[el.dataset.vue], { el }));
+    let vm = new Vue(Object.assign(options[el.dataset.vue], { el, store }));
     vms.push(vm);
   }
 });
@@ -60,4 +63,5 @@ document.addEventListener("turbolinks:visit", () => {
     vm.$destroy();
   }
   vms = [];
+  store.replaceState(cloneDeep(storeState));
 });
