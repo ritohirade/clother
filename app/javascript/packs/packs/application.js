@@ -32,6 +32,7 @@ require("channels");
 // const imagePath = (name) => images(name, true)
 
 import Vue from "vue";
+// import "./hello_vue";
 import store from "./store";
 import cloneDeep from "lodash.clonedeep";
 

@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: "hello-vue",
   data: () => ({
     message: "Hello Vue!"
   })
