@@ -77,7 +77,27 @@
   left: 40px;
   text-shadow: none;
 }
-.userName {
-  color: #000000;
-  padding-top: 0px;
+.price {
+  // margin-top: -20px;
+  text-align: center;
+  font-size: 24px;
+}
+.brandName {
+  // margin-top: -20px;
+  text-align: center;
+}
+.userName1 {
+  // margin-top: -20px;
+  text-align: center;
+  color: black;
+}
+
+.productsImage {
+  position: relative;
+  width: 340px;
+}
+.productsContainer {
+  position: absolute;
+  top: 279px;
+  left: 110px;
 }
