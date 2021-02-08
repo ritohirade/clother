@@ -58,7 +58,7 @@ gem 'devise'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem "font-awesome-sass"
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'mini_magick'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
